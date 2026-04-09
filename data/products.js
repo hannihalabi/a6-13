@@ -2,7 +2,7 @@ export const groupedProducts = [
   {
     badge: "Peptid",
     name: "Retatrutide",
-    description: "Valj det antal som passar dina behov.",
+    description: "Välj det antal som passar dina behov.",
     options: [
       {
         product: "Retatrutide 1st",
@@ -75,7 +75,7 @@ export const singleProducts = [
   {
     badge: "Estetik",
     name: "Hyaluronic Acid",
-    description: "Hogkvalitativt hyaluronsyra-preparat.",
+    description: "Högkvalitativt hyaluronsyra-preparat.",
     product: "Hyaluronic Acid",
     priceLabel: "1 199 kr",
     amount: 119900,

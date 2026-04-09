@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Betalning genomford - MediShop",
+  title: "Betalning genomförd - MediShop",
 };
 
 export default function SuccessPage() {
@@ -21,9 +21,9 @@ export default function SuccessPage() {
             <span className="checkmark" aria-hidden="true">
               ✓
             </span>
-            <h1>Tack for din bestallning!</h1>
+            <h1>Tack för din beställning!</h1>
             <p>
-              Din betalning ar genomford. Du far en bekraftelse via e-post nar
+              Din betalning är genomförd. Du får en bekräftelse via e-post när
               Stripe har avslutat behandlingen.
             </p>
             <Link href="/" className="btn btn-primary">

@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export async function POST(request) {
   if (!process.env.STRIPE_SECRET_KEY) {
     return NextResponse.json(
-      { error: "STRIPE_SECRET_KEY saknas i miljo-variablerna." },
+      { error: "STRIPE_SECRET_KEY saknas i miljövariablerna." },
       { status: 500 }
     );
   }
@@ -17,7 +17,7 @@ export async function POST(request) {
     payload = await request.json();
   } catch {
     return NextResponse.json(
-      { error: "Kunde inte lasa request-body." },
+      { error: "Kunde inte läsa request-body." },
       { status: 400 }
     );
   }
