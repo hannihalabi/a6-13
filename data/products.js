@@ -99,6 +99,7 @@ export const singleProducts = [
     product: "Hyaluronic Acid",
     priceLabel: "1 199 kr",
     amount: 119900,
+    image: "/hyaluron.jpeg",
   },
   {
     badge: "Peptid",

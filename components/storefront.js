@@ -71,6 +71,7 @@ export default function Storefront({ groupedProducts, singleProducts }) {
         category: product.badge,
         name: product.name,
         description: product.description,
+        image: product.image || null,
         options: [
           {
             product: product.product,
@@ -164,8 +165,18 @@ export default function Storefront({ groupedProducts, singleProducts }) {
                           <span className="catalog-index">{totalIndex}</span>
                           <div className="visual-panel">
                             <span className="visual-badge">{product.category}</span>
-                            <div className="visual-orb visual-orb-one" />
-                            <div className="visual-orb visual-orb-two" />
+                            {product.image ? (
+                              <img
+                                src={product.image}
+                                alt={product.name}
+                                className="visual-product-image"
+                              />
+                            ) : (
+                              <>
+                                <div className="visual-orb visual-orb-one" />
+                                <div className="visual-orb visual-orb-two" />
+                              </>
+                            )}
                             <div className="visual-copy">
                               <strong>{product.name}</strong>
                               <span>
