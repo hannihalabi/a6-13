@@ -2,62 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useCart } from "../context/CartContext";
+import { CartButton } from "./Cart";
 
-const PUBLISHABLE_KEY =
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ||
-  "pk_live_51TD0dkGcQBBi7wtgTGqXyI9GJ5Hgtubz7MAY38xNwc4yrMMiUDhMSdUbcjgGy23Wi1xiVqpWUJwbE0OUS3g3kdNI00sy2XavLd";
-
-let stripePromise;
-
-function getStripeClient() {
-  if (!PUBLISHABLE_KEY || typeof window === "undefined") {
-    return Promise.resolve(null);
-  }
-
-  if (!stripePromise) {
-    stripePromise = new Promise((resolve, reject) => {
-      const resolveStripe = () => {
-        if (!window.Stripe) {
-          reject(new Error("Stripe.js kunde inte initieras."));
-          return;
-        }
-
-        resolve(window.Stripe(PUBLISHABLE_KEY));
-      };
-
-      if (window.Stripe) {
-        resolveStripe();
-        return;
-      }
-
-      const existingScript = document.querySelector(
-        'script[data-stripe-loader="true"]'
-      );
-
-      if (existingScript) {
-        existingScript.addEventListener("load", resolveStripe, { once: true });
-        existingScript.addEventListener(
-          "error",
-          () => reject(new Error("Kunde inte ladda Stripe.js.")),
-          { once: true }
-        );
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://js.stripe.com/v3/";
-      script.async = true;
-      script.dataset.stripeLoader = "true";
-      script.onload = resolveStripe;
-      script.onerror = () =>
-        reject(new Error("Kunde inte ladda Stripe.js."));
-
-      document.head.appendChild(script);
-    });
-  }
-
-  return stripePromise;
-}
 
 function Modal({ content, onClose }) {
   if (!content) {
@@ -93,9 +40,10 @@ function createProductId(value) {
 }
 
 export default function Storefront({ groupedProducts, singleProducts }) {
-  const [pendingProduct, setPendingProduct] = useState("");
   const [modalContent, setModalContent] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
+  const [addedProduct, setAddedProduct] = useState("");
+  const { addItem } = useCart();
 
   const catalogSections = [
     {
@@ -152,69 +100,14 @@ export default function Storefront({ groupedProducts, singleProducts }) {
     return () => window.removeEventListener("keydown", handleEscape);
   }, [modalContent]);
 
-  async function checkout(productName, amountInOre) {
-    if (!PUBLISHABLE_KEY) {
-      setModalContent({
-        title: "Stripe ej konfigurerat",
-        message:
-          "Lägg till NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY för att aktivera checkout i Next.js-appen.",
-      });
-      return;
-    }
-
-    setPendingProduct(productName);
-
-    try {
-      const stripe = await getStripeClient();
-
-      if (!stripe) {
-        throw new Error("Stripe.js kunde inte laddas.");
-      }
-
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          product: productName,
-          amount: amountInOre,
-          currency: "sek",
-        }),
-      });
-
-      let payload = {};
-
-      try {
-        payload = await response.json();
-      } catch {
-        payload = {};
-      }
-
-      if (!response.ok) {
-        throw new Error(
-          payload.error || "Serverfel vid skapande av checkout-session."
-        );
-      }
-
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: payload.sessionId,
-      });
-
-      if (error) {
-        throw error;
-      }
-    } catch (error) {
-      setModalContent({
-        title: "Checkout misslyckades",
-        message:
-          error instanceof Error
-            ? error.message
-            : "Något gick fel. Försök igen eller kontakta support.",
-      });
-    } finally {
-      setPendingProduct("");
-    }
+  function handleAddToCart(option) {
+    addItem({
+      product: option.product,
+      amount: option.amount,
+      priceLabel: option.priceLabel,
+    });
+    setAddedProduct(option.product);
+    setTimeout(() => setAddedProduct(""), 1500);
   }
 
   function selectOption(productId, optionProduct) {
@@ -235,6 +128,8 @@ export default function Storefront({ groupedProducts, singleProducts }) {
           </Link>
           <nav className="site-nav" aria-label="Primär navigation">
             <a href="#products">Produkter</a>
+            <Link href="/admin" className="nav-admin-link">Logga in</Link>
+            <CartButton />
           </nav>
         </div>
       </header>
@@ -346,18 +241,12 @@ export default function Storefront({ groupedProducts, singleProducts }) {
                                   </span>
                                   <button
                                     type="button"
-                                    className="btn-buy"
-                                    disabled={pendingProduct === activeOption.product}
-                                    onClick={() =>
-                                      checkout(
-                                        activeOption.product,
-                                        activeOption.amount
-                                      )
-                                    }
+                                    className={`btn-buy${addedProduct === activeOption.product ? " btn-buy--added" : ""}`}
+                                    onClick={() => handleAddToCart(activeOption)}
                                   >
-                                    {pendingProduct === activeOption.product
-                                      ? "Skickar..."
-                                      : "Gå till checkout"}
+                                    {addedProduct === activeOption.product
+                                      ? "Lagd i varukorg ✓"
+                                      : "Lägg i varukorg"}
                                   </button>
                                 </div>
                               </>

@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CartProvider } from "../context/CartContext";
 
 export const metadata = {
   title: "MediShop",
@@ -8,7 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="sv">
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
