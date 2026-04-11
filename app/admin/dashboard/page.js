@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { groupedProducts, singleProducts } from "@/data/products";
+import { groupedProducts, singleProducts } from "../../../data/products";
 
 const allProducts = [
   ...groupedProducts.flatMap((group) =>
