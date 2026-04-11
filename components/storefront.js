@@ -127,7 +127,6 @@ export default function Storefront({ groupedProducts, singleProducts }) {
             Medi<span>Shop</span>
           </Link>
           <nav className="site-nav" aria-label="Primär navigation">
-            <a href="#products">Produkter</a>
             <Link href="/admin" className="nav-admin-link">Logga in</Link>
             <CartButton />
           </nav>

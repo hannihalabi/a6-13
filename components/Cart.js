@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useCart } from "../context/CartContext";
 
 function formatSEK(ore) {
@@ -58,15 +59,18 @@ export function CartButton() {
         )}
       </button>
 
-      <CartDrawer open={open} onClose={() => setOpen(false)} />
+      <CartFullscreen open={open} onClose={() => setOpen(false)} />
     </>
   );
 }
 
-function CartDrawer({ open, onClose }) {
+function CartFullscreen({ open, onClose }) {
   const { items, totalAmount, increment, decrement, removeItem, clear } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
@@ -101,92 +105,116 @@ function CartDrawer({ open, onClose }) {
     }
   }
 
-  return (
-    <>
-      <div
-        className={`cart-overlay${open ? " active" : ""}`}
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      <aside className={`cart-drawer${open ? " active" : ""}`} aria-label="Varukorg">
-        <div className="cart-drawer-header">
-          <h2>Varukorg</h2>
-          <button type="button" className="cart-close-btn" onClick={onClose} aria-label="Stäng varukorg">
-            ✕
-          </button>
-        </div>
+  if (!open || !mounted) return null;
 
+  return createPortal(
+    <div className="cart-fullscreen" role="dialog" aria-modal="true" aria-label="Varukorg">
+      {/* Header */}
+      <div className="cart-fs-header">
+        <button
+          type="button"
+          className="cart-fs-back"
+          onClick={onClose}
+          aria-label="Tillbaka"
+        >
+          <BackIcon />
+        </button>
+        <h1 className="cart-fs-title">Varukorg</h1>
+      </div>
+
+      {/* Content */}
+      <div className="cart-fs-body">
         {items.length === 0 ? (
-          <div className="cart-empty">
-            <CartIcon size={40} />
+          <div className="cart-fs-empty">
+            <CartIcon size={48} />
             <p>Varukorgen är tom</p>
+            <button type="button" className="cart-fs-back-link" onClick={onClose}>
+              Fortsätt handla
+            </button>
           </div>
         ) : (
           <>
-            <ul className="cart-items">
+            <ul className="cart-fs-items">
               {items.map((item) => (
-                <li key={item.product} className="cart-item">
-                  <div className="cart-item-info">
-                    <span className="cart-item-name">{item.product}</span>
-                    <span className="cart-item-price">{formatSEK(item.amount * item.quantity)}</span>
-                  </div>
-                  <div className="cart-item-controls">
+                <li key={item.product} className="cart-fs-item">
+                  <div className="cart-fs-item-top">
+                    <span className="cart-fs-item-name">{item.product}</span>
                     <button
                       type="button"
-                      className="cart-qty-btn"
-                      onClick={() => decrement(item.product)}
-                      aria-label="Minska antal"
-                    >
-                      −
-                    </button>
-                    <span className="cart-qty">{item.quantity}</span>
-                    <button
-                      type="button"
-                      className="cart-qty-btn"
-                      onClick={() => increment(item.product)}
-                      aria-label="Öka antal"
-                    >
-                      +
-                    </button>
-                    <button
-                      type="button"
-                      className="cart-remove-btn"
+                      className="cart-fs-remove"
                       onClick={() => removeItem(item.product)}
-                      aria-label="Ta bort produkt"
+                      aria-label="Ta bort"
                     >
                       ✕
                     </button>
+                  </div>
+                  <div className="cart-fs-item-bottom">
+                    <div className="cart-fs-qty-row">
+                      <button
+                        type="button"
+                        className="cart-fs-qty-btn"
+                        onClick={() => decrement(item.product)}
+                        aria-label="Minska"
+                      >
+                        −
+                      </button>
+                      <span className="cart-fs-qty">{item.quantity}</span>
+                      <button
+                        type="button"
+                        className="cart-fs-qty-btn"
+                        onClick={() => increment(item.product)}
+                        aria-label="Öka"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="cart-fs-item-price">
+                      {formatSEK(item.amount * item.quantity)}
+                    </span>
                   </div>
                 </li>
               ))}
             </ul>
 
-            <div className="cart-footer">
-              {error && <p className="cart-error">{error}</p>}
-              <div className="cart-total-row">
-                <span>Totalt</span>
-                <strong>{formatSEK(totalAmount)}</strong>
-              </div>
-              <button
-                type="button"
-                className="cart-checkout-btn"
-                onClick={handleCheckout}
-                disabled={loading}
-              >
-                {loading ? "Skickar..." : "Gå till checkout"}
-              </button>
-              <button
-                type="button"
-                className="cart-clear-btn"
-                onClick={clear}
-              >
-                Töm varukorg
-              </button>
-            </div>
+            <button
+              type="button"
+              className="cart-fs-clear"
+              onClick={clear}
+            >
+              Töm varukorg
+            </button>
           </>
         )}
-      </aside>
-    </>
+      </div>
+
+      {/* Footer */}
+      {items.length > 0 && (
+        <div className="cart-fs-footer">
+          {error && <p className="cart-fs-error">{error}</p>}
+          <div className="cart-fs-total">
+            <span>Totalt</span>
+            <strong>{formatSEK(totalAmount)}</strong>
+          </div>
+          <button
+            type="button"
+            className="cart-fs-checkout-btn"
+            onClick={handleCheckout}
+            disabled={loading}
+          >
+            {loading ? "Skickar..." : "Gå till betalning"}
+          </button>
+        </div>
+      )}
+    </div>,
+    document.body
+  );
+}
+
+function BackIcon() {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
   );
 }
 
