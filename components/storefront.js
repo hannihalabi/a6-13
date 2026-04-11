@@ -57,6 +57,7 @@ export default function Storefront({ groupedProducts, singleProducts }) {
         category: group.badge,
         name: group.name,
         description: group.description,
+        image: group.image || null,
         options: group.options,
       })),
     },

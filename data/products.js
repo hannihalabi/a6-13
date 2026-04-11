@@ -41,6 +41,7 @@ export const groupedProducts = [
     badge: "Peptid",
     name: "Tirzepatid",
     description: "GIP/GLP-1 receptor agonist.",
+    image: "/tirza.jpeg",
     options: [
       {
         product: "Tirzepatid 4st",
