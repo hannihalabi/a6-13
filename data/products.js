@@ -69,6 +69,26 @@ export const groupedProducts = [
       },
     ],
   },
+  {
+    badge: "Paket",
+    name: "TV-paket",
+    description: "Komplett TV-paket med premiumkanaler.",
+    options: [
+      {
+        product: "TV-paket Standard",
+        quantityLabel: "Standard",
+        priceLabel: "1 500 kr",
+        amount: 150000,
+      },
+      {
+        product: "TV-paket Premium",
+        quantityLabel: "Premium",
+        priceLabel: "3 000 kr",
+        amount: 300000,
+        featured: true,
+      },
+    ],
+  },
 ];
 
 export const singleProducts = [
@@ -87,13 +107,5 @@ export const singleProducts = [
     product: "Melanotan",
     priceLabel: "500 kr",
     amount: 50000,
-  },
-  {
-    badge: "Paket",
-    name: "TV-paket",
-    description: "Komplett TV-paket med premiumkanaler.",
-    product: "TV-paket",
-    priceLabel: "1 500 kr",
-    amount: 150000,
   },
 ];
