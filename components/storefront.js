@@ -31,40 +31,48 @@ function createProductId(value) {
     .replace(/^-|-$/g, "");
 }
 
-export default function Storefront({ groupedProducts, singleProducts }) {
+export default function Storefront({ groupedProducts, singleProducts, bottomProducts = [] }) {
   const [modalContent, setModalContent] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
   const [addedProduct, setAddedProduct] = useState("");
   const { addItem } = useCart();
 
-  const allProducts = [
-    ...groupedProducts.map((group) => ({
-      id: createProductId(group.name),
-      category: group.badge,
-      name: group.name,
-      description: group.description,
-      image: group.image || null,
-      options: group.options,
-      defaultOption: group.options.find((o) => o.featured)?.product || null,
-    })),
-    ...singleProducts.map((product) => ({
-      id: createProductId(product.name),
-      category: product.badge,
-      name: product.name,
-      description: product.description,
-      image: product.image || null,
-      options: [
-        {
-          product: product.product,
-          quantityLabel: "Standard",
-          priceLabel: product.priceLabel,
-          amount: product.amount,
-          featured: true,
-        },
-      ],
-      defaultOption: product.product,
-    })),
+  const mapGroup = (group) => ({
+    id: createProductId(group.name),
+    category: group.badge,
+    name: group.name,
+    description: group.description,
+    image: group.image || null,
+    options: group.options,
+    defaultOption: group.options.find((o) => o.featured)?.product || null,
+  });
+
+  const mapSingle = (product) => ({
+    id: createProductId(product.name),
+    category: product.badge,
+    name: product.name,
+    description: product.description,
+    image: product.image || null,
+    options: [
+      {
+        product: product.product,
+        quantityLabel: "Standard",
+        priceLabel: product.priceLabel,
+        amount: product.amount,
+        featured: true,
+      },
+    ],
+    defaultOption: product.product,
+  });
+
+  const mainProducts = [
+    ...groupedProducts.map(mapGroup),
+    ...singleProducts.map(mapSingle),
   ];
+
+  const lastProducts = bottomProducts.map(mapGroup);
+
+  const allProducts = [...mainProducts, ...lastProducts];
 
   // Sätt default-val för produkter som har ett rekommenderat alternativ
   useEffect(() => {
@@ -100,7 +108,9 @@ export default function Storefront({ groupedProducts, singleProducts }) {
   const currentYear = new Date().getFullYear();
 
   return (
-    <>
+    <div className="page">
+      <div className="orb-mid" aria-hidden="true" />
+
       {/* ── Nav ───────────────────────────────────────────────── */}
       <nav className="nav">
         <Link href="/" className="brand">MediShop</Link>
@@ -216,6 +226,6 @@ export default function Storefront({ groupedProducts, singleProducts }) {
       </footer>
 
       <Modal content={modalContent} onClose={() => setModalContent(null)} />
-    </>
+    </div>
   );
 }

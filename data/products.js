@@ -1,6 +1,39 @@
 export const groupedProducts = [
   {
     badge: "Peptid",
+    name: "Tirzepatid",
+    description: "GIP/GLP-1 receptor agonist.",
+    image: "/tirza.jpeg",
+    options: [
+      {
+        product: "Tirzepatid 4st",
+        quantityLabel: "4 st",
+        priceLabel: "3 000 kr",
+        amount: 300000,
+      },
+      {
+        product: "Tirzepatid 10st",
+        quantityLabel: "10 st",
+        priceLabel: "5 500 kr",
+        amount: 550000,
+        featured: true,
+      },
+      {
+        product: "Tirzepatid 20st",
+        quantityLabel: "20 st",
+        priceLabel: "9 500 kr",
+        amount: 950000,
+      },
+      {
+        product: "Tirzepatid 50st",
+        quantityLabel: "50 st",
+        priceLabel: "20 000 kr",
+        amount: 2000000,
+      },
+    ],
+  },
+  {
+    badge: "Peptid",
     name: "Retatrutide",
     description: "Välj det antal som passar dina behov.",
     options: [
@@ -37,59 +70,6 @@ export const groupedProducts = [
       },
     ],
   },
-  {
-    badge: "Peptid",
-    name: "Tirzepatid",
-    description: "GIP/GLP-1 receptor agonist.",
-    image: "/tirza.jpeg",
-    options: [
-      {
-        product: "Tirzepatid 4st",
-        quantityLabel: "4 st",
-        priceLabel: "3 000 kr",
-        amount: 300000,
-      },
-      {
-        product: "Tirzepatid 10st",
-        quantityLabel: "10 st",
-        priceLabel: "5 500 kr",
-        amount: 550000,
-        featured: true,
-      },
-      {
-        product: "Tirzepatid 20st",
-        quantityLabel: "20 st",
-        priceLabel: "9 500 kr",
-        amount: 950000,
-      },
-      {
-        product: "Tirzepatid 50st",
-        quantityLabel: "50 st",
-        priceLabel: "20 000 kr",
-        amount: 2000000,
-      },
-    ],
-  },
-  {
-    badge: "Paket",
-    name: "TV-paket",
-    description: "Komplett TV-paket med premiumkanaler.",
-    options: [
-      {
-        product: "TV-paket Standard",
-        quantityLabel: "Standard",
-        priceLabel: "1 500 kr",
-        amount: 150000,
-      },
-      {
-        product: "TV-paket Premium",
-        quantityLabel: "Premium",
-        priceLabel: "3 000 kr",
-        amount: 300000,
-        featured: true,
-      },
-    ],
-  },
 ];
 
 export const singleProducts = [
@@ -109,5 +89,28 @@ export const singleProducts = [
     product: "Melanotan",
     priceLabel: "500 kr",
     amount: 50000,
+  },
+];
+
+export const bottomProducts = [
+  {
+    badge: "Paket",
+    name: "TV-paket",
+    description: "Komplett TV-paket med premiumkanaler.",
+    options: [
+      {
+        product: "TV-paket Standard",
+        quantityLabel: "Standard",
+        priceLabel: "1 500 kr",
+        amount: 150000,
+      },
+      {
+        product: "TV-paket Premium",
+        quantityLabel: "Premium",
+        priceLabel: "3 000 kr",
+        amount: 300000,
+        featured: true,
+      },
+    ],
   },
 ];

@@ -28,6 +28,7 @@ body {
   background: linear-gradient(120deg, #f0f6ff, #dceaff 45%, #eaf2ff);
   color: var(--ink);
   min-height: 100vh;
+  isolation: isolate;
 }
 
 a {
@@ -47,27 +48,48 @@ button {
   overflow: hidden;
 }
 
-.page::before,
+/* Orb 1 — uppe till höger */
+.page::before {
+  content: "";
+  position: absolute;
+  top: -180px;
+  right: -220px;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(37, 99, 235, 0.42), transparent 68%);
+  filter: blur(1px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Orb 2 — nere till vänster */
 .page::after {
   content: "";
   position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  filter: blur(0.5px);
-  z-index: 0;
-}
-
-.page::before {
-  top: -180px;
-  right: -220px;
-  background: radial-gradient(circle at 30% 30%, rgba(122, 173, 238, 0.55), rgba(122, 173, 238, 0));
-}
-
-.page::after {
-  bottom: -220px;
+  bottom: -200px;
   left: -180px;
-  background: radial-gradient(circle at 40% 40%, rgba(26, 86, 219, 0.45), rgba(26, 86, 219, 0));
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(15, 45, 140, 0.36), transparent 65%);
+  filter: blur(1px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Orb 3 — mitten-vänster */
+.orb-mid {
+  position: absolute;
+  top: 42%;
+  left: -140px;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.30), transparent 65%);
+  filter: blur(1px);
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* ─── Nav ──────────────────────────────────────────────── */
@@ -75,7 +97,7 @@ button {
 .nav {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
