@@ -137,21 +137,11 @@ button {
 /* ─── Floating cart (mobile) ─────────────────────────────── */
 
 .floating-cart {
-  position: fixed;
+  position: fixed !important;
   right: 20px;
   bottom: calc(20px + env(safe-area-inset-bottom));
   z-index: 45;
-  display: none;
-  align-items: center;
-  gap: 10px;
-  border: none;
-  border-radius: 999px;
-  padding: 12px 16px;
-  background: var(--olive);
-  color: #fff;
-  font-size: 0.95rem;
-  box-shadow: 0 18px 30px rgba(26, 86, 219, 0.28);
-  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(26, 86, 219, 0.22);
 }
 
 .floating-cart-icon {
@@ -1125,7 +1115,4 @@ button {
     padding-right: 6%;
   }
 
-  .floating-cart {
-    display: inline-flex;
-  }
 }

@@ -220,10 +220,6 @@ export default function Storefront({ groupedProducts, singleProducts, bottomProd
         </section>
       </div>
 
-      {/* ── Footer ──────────────────────────────────────────────── */}
-      <footer className="footer">
-        <p>© {currentYear} MediShop. Säker betalning via Stripe.</p>
-      </footer>
 
       <Modal content={modalContent} onClose={() => setModalContent(null)} />
     </div>

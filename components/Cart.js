@@ -47,6 +47,7 @@ export function CartButton() {
 
   return (
     <>
+      {/* Knapp i nav */}
       <button
         type="button"
         className="cart-trigger"
@@ -55,7 +56,20 @@ export function CartButton() {
       >
         <CartIcon />
         {totalCount > 0 && (
-          <span className="cart-count">{totalCount}</span>
+          <span className="cart-badge">{totalCount}</span>
+        )}
+      </button>
+
+      {/* Flytande knapp nere till höger */}
+      <button
+        type="button"
+        className="cart-trigger floating-cart"
+        onClick={() => setOpen(true)}
+        aria-label="Öppna varukorg"
+      >
+        <CartIcon />
+        {totalCount > 0 && (
+          <span className="cart-badge">{totalCount}</span>
         )}
       </button>
 

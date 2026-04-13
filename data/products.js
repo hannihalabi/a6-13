@@ -75,12 +75,11 @@ export const groupedProducts = [
 export const singleProducts = [
   {
     badge: "Estetik",
-    name: "Hyaluronic Acid",
-    description: "Högkvalitativt hyaluronsyra-preparat.",
-    product: "Hyaluronic Acid",
+    name: "GHK-Cu Serum 100 mg",
+    description: "Kopparbaserat peptidserum för hud och återhämtning.",
+    product: "GHK-Cu Serum 100 mg",
     priceLabel: "1 199 kr",
     amount: 119900,
-    image: "/hyaluron.jpeg",
   },
   {
     badge: "Peptid",
