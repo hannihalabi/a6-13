@@ -1,8 +1,8 @@
 export const groupedProducts = [
   {
     badge: "Peptid",
-    name: "Tirzepatid",
-    description: "GIP/GLP-1 receptor agonist.",
+    name: "Viktminskningsprogram 1",
+    description: "Välj det antal som passar dina behov.",
     image: "/tirza.jpeg",
     options: [
       {
@@ -34,7 +34,7 @@ export const groupedProducts = [
   },
   {
     badge: "Peptid",
-    name: "Retatrutide",
+    name: "Viktminskningsprogram 2",
     description: "Välj det antal som passar dina behov.",
     options: [
       {
