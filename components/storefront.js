@@ -154,6 +154,11 @@ export default function Storefront({ groupedProducts, singleProducts, bottomProd
 
               return (
                 <article className="card" key={product.id} id={product.id}>
+                  {product.image && (
+                    <div className="card-image">
+                      <img src={product.image} alt={product.name} />
+                    </div>
+                  )}
                   <div className="card-body">
                     {/* Kicker */}
                     <span className="card-kicker">{product.category}</span>

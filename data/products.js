@@ -1,9 +1,9 @@
 export const groupedProducts = [
   {
     badge: "Peptid",
-    name: "Viktminskningsprogram 1",
-    description: "Välj det antal som passar dina behov.",
-    image: "/tirza.jpeg",
+    name: "Slimgoal TR",
+    description: "Tirzepatid är ett modernt medicinskt stöd för din viktresa – minskar hunger, ökar mättnad och hjälper dig nå resultat som håller.",
+    image: "/MT2.png",
     options: [
       {
         product: "Tirzepatid 4st",
@@ -34,8 +34,9 @@ export const groupedProducts = [
   },
   {
     badge: "Peptid",
-    name: "Viktminskningsprogram 2",
-    description: "Välj det antal som passar dina behov.",
+    name: "Betterbody RT",
+    description: "Retatrutide är nästa generations viktbehandling – designad för att effektivt minska hunger, öka energiförbrukning och ge imponerande resultat.",
+    image: "/Reta.png",
     options: [
       {
         product: "Retatrutide 1st",
@@ -75,17 +76,18 @@ export const groupedProducts = [
 export const singleProducts = [
   {
     badge: "Estetik",
-    name: "GHK-Cu Serum 100 mg",
+    name: "Glasskin Serum",
     description: "Kopparbaserat peptidserum för hud och återhämtning.",
-    product: "GHK-Cu Serum 100 mg",
+    image: "/GHK-CU.jpeg",
+    product: "Glasskin Serum",
     priceLabel: "1 199 kr",
     amount: 119900,
   },
   {
     badge: "Peptid",
-    name: "Melanotan",
-    description: "Syntetisk analogon till alfa-MSH.",
-    product: "Melanotan",
+    name: "Sunglow ML",
+    description: "Stöd din huds naturliga pigmentering och uppnå en djupare, jämnare ton – ett alternativ för dig som söker en solkysst look med hjälp av kroppens egna processer.",
+    product: "Sunglow ML",
     priceLabel: "500 kr",
     amount: 50000,
   },
