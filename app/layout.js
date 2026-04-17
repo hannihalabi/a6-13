@@ -20,6 +20,28 @@ export const metadata = {
   title: "MediShop",
   description: "Medicinsk kvalitet du kan lita på med säker checkout via Stripe.",
   viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
+  openGraph: {
+    title: "MediShop",
+    description: "Medicinsk kvalitet du kan lita på med säker checkout via Stripe.",
+    url: "https://a2-ashen-three.vercel.app",
+    siteName: "MediShop",
+    images: [
+      {
+        url: "https://a2-ashen-three.vercel.app/Reta.png",
+        width: 1200,
+        height: 630,
+        alt: "MediShop",
+      },
+    ],
+    locale: "sv_SE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MediShop",
+    description: "Medicinsk kvalitet du kan lita på med säker checkout via Stripe.",
+    images: ["https://a2-ashen-three.vercel.app/Reta.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
