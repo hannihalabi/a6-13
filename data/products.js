@@ -3,7 +3,7 @@ export const groupedProducts = [
     badge: "Peptid",
     name: "Slimgoal TR",
     description: "Tirzepatid är ett modernt medicinskt stöd för din viktresa – minskar hunger, ökar mättnad och hjälper dig nå resultat som håller.",
-    image: "/MT2.png",
+    image: "/tirza.png",
     options: [
       {
         product: "Tirzepatid 4st",
@@ -87,6 +87,7 @@ export const singleProducts = [
     badge: "Peptid",
     name: "Sunglow ML",
     description: "Stöd din huds naturliga pigmentering och uppnå en djupare, jämnare ton – ett alternativ för dig som söker en solkysst look med hjälp av kroppens egna processer.",
+    image: "/MT2.png",
     product: "Sunglow ML",
     priceLabel: "500 kr",
     amount: 50000,
