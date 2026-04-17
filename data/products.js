@@ -97,17 +97,17 @@ export const singleProducts = [
 export const bottomProducts = [
   {
     badge: "Paket",
-    name: "TV-paket",
-    description: "Komplett TV-paket med premiumkanaler.",
+    name: "Fitness package deluxe",
+    description: "",
     options: [
       {
-        product: "TV-paket Standard",
+        product: "Fitness package deluxe Standard",
         quantityLabel: "Standard",
         priceLabel: "1 500 kr",
         amount: 150000,
       },
       {
-        product: "TV-paket Premium",
+        product: "Fitness package deluxe Premium",
         quantityLabel: "Premium",
         priceLabel: "3 000 kr",
         amount: 300000,
