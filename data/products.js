@@ -45,18 +45,21 @@ export const groupedProducts = [
       {
         product: "Retatrutide 1st",
         quantityLabel: "1 st",
+        sublabel: "10 mg",
         priceLabel: "1 500 kr",
         amount: 150000,
       },
       {
         product: "Retatrutide 5st",
         quantityLabel: "5 st",
+        sublabel: "10 mg",
         priceLabel: "7 000 kr",
         amount: 700000,
       },
       {
         product: "Retatrutide 10st",
         quantityLabel: "10 st",
+        sublabel: "10 mg",
         priceLabel: "12 000 kr",
         amount: 1200000,
         featured: true,
@@ -64,12 +67,14 @@ export const groupedProducts = [
       {
         product: "Retatrutide 50st",
         quantityLabel: "50 st",
+        sublabel: "10 mg",
         priceLabel: "35 000 kr",
         amount: 3500000,
       },
       {
         product: "Retatrutide 100st",
         quantityLabel: "100 st",
+        sublabel: "10 mg",
         priceLabel: "50 000 kr",
         amount: 5000000,
       },
