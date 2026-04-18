@@ -188,6 +188,9 @@ export default function Storefront({ groupedProducts, singleProducts, bottomProd
                               aria-pressed={isSelected}
                             >
                               <span style={{ fontWeight: 600 }}>{option.quantityLabel}</span>
+                              {option.sublabel && (
+                                <span className="card-variant-meta" style={{ opacity: 0.6, fontSize: "0.75em" }}>{option.sublabel}</span>
+                              )}
                               <span className="card-variant-meta">{option.priceLabel}</span>
                               {option.featured && (
                                 <span className="card-variant-meta" style={{ color: "var(--olive)", fontWeight: 700 }}>Rekommenderad</span>

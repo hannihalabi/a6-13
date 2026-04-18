@@ -6,27 +6,31 @@ export const groupedProducts = [
     image: "/tirza.png",
     options: [
       {
-        product: "Tirzepatid 4st",
-        quantityLabel: "4 st",
+        product: "Tirzepatid 2st",
+        quantityLabel: "2 st",
+        sublabel: "2x5 mg",
         priceLabel: "3 000 kr",
         amount: 300000,
       },
       {
-        product: "Tirzepatid 10st",
-        quantityLabel: "10 st",
+        product: "Tirzepatid 5st",
+        quantityLabel: "5 st",
+        sublabel: "2x5 mg",
         priceLabel: "5 500 kr",
         amount: 550000,
+      },
+      {
+        product: "Tirzepatid 10st",
+        quantityLabel: "10 st",
+        sublabel: "2x5 mg",
+        priceLabel: "9 500 kr",
+        amount: 950000,
         featured: true,
       },
       {
-        product: "Tirzepatid 20st",
-        quantityLabel: "20 st",
-        priceLabel: "9 500 kr",
-        amount: 950000,
-      },
-      {
-        product: "Tirzepatid 50st",
-        quantityLabel: "50 st",
+        product: "Tirzepatid 25st",
+        quantityLabel: "25 st",
+        sublabel: "2x5 mg",
         priceLabel: "20 000 kr",
         amount: 2000000,
       },
@@ -35,7 +39,7 @@ export const groupedProducts = [
   {
     badge: "Peptid",
     name: "Betterbody RT",
-    description: "Retatrutide är nästa generations viktbehandling – designad för att effektivt minska hunger, öka energiförbrukning och ge imponerande resultat.",
+    description: "Retatrutide 10mg är nästa generations viktbehandling – designad för att effektivt minska hunger, öka energiförbrukning och ge imponerande resultat.",
     image: "/Reta.png",
     options: [
       {
@@ -86,7 +90,7 @@ export const singleProducts = [
   {
     badge: "Peptid",
     name: "Sunglow ML",
-    description: "Stöd din huds naturliga pigmentering och uppnå en djupare, jämnare ton – ett alternativ för dig som söker en solkysst look med hjälp av kroppens egna processer.",
+    description: "Melanotan 10mg – stöd din huds naturliga pigmentering och uppnå en djupare, jämnare ton – ett alternativ för dig som söker en solkysst look med hjälp av kroppens egna processer.",
     image: "/MT2.png",
     product: "Sunglow ML",
     priceLabel: "500 kr",
